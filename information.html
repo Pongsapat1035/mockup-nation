@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>เกี่ยวกับเรา - กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f9fafb;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      /* ========== HEADER STYLES (MATCHING SERVICE.HTML) ========== */
+      .info-header {
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .info-header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+      }
+
+      .info-logo-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .info-logo-placeholder {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        /* background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.25rem;
+      }
+
+      .info-logo-text h1 {
+        font-size: 0.875rem;
+        font-weight: bold;
+        color: #166534;
+        margin: 0;
+      }
+
+      .info-logo-text p {
+        font-size: 0.75rem;
+        color: #666;
+        margin: 0;
+      }
+
+      .info-nav {
+        display: none;
+        gap: 2rem;
+      }
+
+      .info-nav a {
+        color: #374151;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .info-nav a:hover {
+        color: #16a34a;
+      }
+
+      .info-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .info-search-btn,
+      .info-menu-toggle {
+        background: none;
+        border: none;
+        color: #666;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .info-search-btn:hover,
+      .info-menu-toggle:hover {
+        color: #16a34a;
+      }
+
+      .info-language-switcher {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.75rem;
+      }
+
+      .info-language-switcher button {
+        background: none;
+        border: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .info-language-switcher .active {
+        color: #16a34a;
+      }
+
+      .info-language-switcher .inactive {
+        color: #9ca3af;
+      }
+
+      @media (min-width: 640px) {
+        .info-language-switcher {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .info-nav {
+          display: flex;
+        }
+
+        .info-menu-toggle {
+          display: none;
+        }
+      }
+
+      /* ========== HERO SECTION ========== */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #059669 0%,
+          #047857 50%,
+          #065f46 100%
+        );
+        padding: 4rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        color: white;
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        color: white;
+        font-size: 1.25rem;
+        max-width: 800px;
+        margin: 0 auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        opacity: 0.95;
+      }
+
+      /* ========== CONTENT SECTIONS ========== */
+      .content-section {
+        padding: 4rem 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .section-title p {
+        color: #6b7280;
+        font-size: 1.125rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* ========== MISSION VISION ========== */
+      .mission-vision {
+        background: white;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 3rem;
+      }
+
+      .mv-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mv-item {
+        padding: 3rem;
+        text-align: center;
+      }
+
+      .mv-item.mission {
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      }
+
+      .mv-item.vision {
+        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      }
+
+      .mv-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        color: white;
+        font-size: 2rem;
+      }
+
+      .mv-item.vision .mv-icon {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      }
+
+      .mv-item h3 {
+        font-size: 1.75rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .mv-item p {
+        color: #4b5563;
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      /* ========== HISTORY SECTION ========== */
+      .history-section {
+        background: white;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        padding: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .timeline {
+        position: relative;
+        margin-top: 2rem;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(to bottom, #16a34a, #059669);
+        border-radius: 2px;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .timeline-item:nth-child(odd) {
+        flex-direction: row;
+      }
+
+      .timeline-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-content {
+        background: #f8fafc;
+        border-radius: 1rem;
+        padding: 2rem;
+        width: 45%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #16a34a;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content {
+        border-left: none;
+        border-right: 4px solid #16a34a;
+      }
+
+      .timeline-year {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #16a34a;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 2rem;
+        font-weight: bold;
+        font-size: 1rem;
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+      }
+
+      .timeline-content h4 {
+        color: #1f2937;
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+      }
+
+      .timeline-content p {
+        color: #4b5563;
+        line-height: 1.6;
+      }
+
+      /* ========== ORGANIZATION CHART ========== */
+      .org-chart {
+        background: white;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        padding: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .org-level {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .org-position {
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+        margin: 0 1rem;
+      }
+
+      .org-position h4 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .org-position p {
+        font-size: 0.875rem;
+        opacity: 0.9;
+      }
+
+      .dept-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .dept-card {
+        background: #f8fafc;
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        border: 2px solid #e5e7eb;
+        transition: all 0.3s ease;
+      }
+
+      .dept-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-color: #16a34a;
+      }
+
+      .dept-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .dept-card h4 {
+        color: #1f2937;
+        font-size: 1.125rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+      }
+
+      .dept-card p {
+        color: #6b7280;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      /* ========== CONTACT INFO ========== */
+      .contact-section {
+        background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+        border-radius: 1.5rem;
+        padding: 3rem;
+        color: white;
+        text-align: center;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .contact-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .contact-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+      }
+
+      .contact-item h4 {
+        font-size: 1.125rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+      }
+
+      .contact-item p {
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      /* ========== RESPONSIVE DESIGN ========== */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .mv-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline::before {
+          left: 2rem;
+        }
+
+        .timeline-item {
+          flex-direction: column !important;
+          align-items: flex-start;
+          padding-left: 4rem;
+        }
+
+        .timeline-content {
+          width: 100%;
+        }
+
+        .timeline-year {
+          left: 2rem;
+          transform: translateX(-50%);
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .content-section {
+          padding: 2rem 0;
+        }
+
+        .info-header-content {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .info-logo-section {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER ========== -->
+    <header class="info-header">
+      <div class="container">
+        <div class="info-header-content">
+          <!-- Logo Section -->
+          <div class="info-logo-section">
+            <div class="info-logo-placeholder">
+               <img src="./public/logo.png" width="48px" height="48px">
+            </div>
+            <div class="info-logo-text">
+              <h1>กรมอุทยานแห่งชาติ</h1>
+              <p>สัตว์ป่า และพันธุ์พืช</p>
+            </div>
+          </div>
+
+          <!-- Navigation Menu (Desktop) -->
+          <nav class="info-nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="information.html" style="color: #16a34a"
+              >ข้อมูลอุทยานแห่งชาติ</a
+            >
+            <a href="news.html">ข่าวสารและกิจกรรม</a>
+            <a href="knowledge.html">คลังความรู้</a>
+            <a href="#">เกี่ยวกับเรา</a>
+          </nav>
+
+          <!-- Search & Language Section -->
+          <div class="info-header-actions">
+            <button class="info-search-btn" aria-label="ค้นหา">
+              <i class="fas fa-search"></i>
+            </button>
+
+            <div class="info-language-switcher">
+              <button class="active">TH</button>
+              <span style="color: #9ca3af">|</span>
+              <button class="inactive">EN</button>
+            </div>
+
+            <button class="info-menu-toggle" aria-label="เปิดเมนู">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>เกี่ยวกับเรา</h1>
+          <p>
+            กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช
+            ดำเนินภารกิจเกี่ยวกับการอนุรักษ์ ส่งเสริม และฟื้นฟูทรัพยากรธรรมชาติ
+            สัตว์ป่า และพันธุ์พืช ในเขตพื้นที่ป่าเพื่อการอนุรักษ์ โดยการควบคุม
+            ป้องกันพื้นที่ป่าอนุรักษ์เดิมที่มีอยู่
+            และพื้นที่ป่าเสื่อมโทรมให้กลับสมบูรณ์ด้วยกลยุทธ์การส่งเสริม กระตุ้น
+            และปลุกจิตสำนึกให้ชุมชนมีความหวงแหนและการมีส่วนร่วมในการดูแลทรัพยากรท้องถิ่น
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+      <div class="container">
+        <!-- ========== MISSION & VISION ========== -->
+        <section class="content-section">
+          <div class="mission-vision">
+            <div class="mv-grid">
+              <div class="mv-item mission">
+                <div class="mv-icon">
+                  <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>พันธกิจ</h3>
+                <p>
+                  อนุรักษ์และคุ้มครองทรัพยากรธรรมชาติ
+                  พัฒนาการจัดการอุทยานแห่งชาติ
+                  ส่งเสริมการมีส่วนร่วมของประชาชนในการอนุรักษ์ธรรมชาติ
+                  และสร้างการรับรู้ความสำคัญของระบบนิเวศเพื่อความยั่งยืน
+                </p>
+              </div>
+              <div class="mv-item vision">
+                <div class="mv-icon">
+                  <i class="fas fa-eye"></i>
+                </div>
+                <h3>วิสัยทัศน์</h3>
+                <p>
+                  เป็นองค์กรชั้นนำในการอนุรักษ์ธรรมชาติและความหลากหลายทางชีวภาพ
+                  ที่ได้รับการยอมรับในระดับสากล
+                  พร้อมสร้างสมดุลระหว่างการอนุรักษ์
+                  และการใช้ประโยชน์อย่างยั่งยืน
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== VALUES & PRINCIPLES ========== -->
+        <section class="content-section">
+          <div class="section-title">
+            <h2>
+              <i class="fas fa-heart"></i>
+              ค่านิยมและหลักการดำเนินงาน
+            </h2>
+            <p>
+              หลักการและแนวคิดที่เป็นรากฐานของการทำงานเพื่อการอนุรักษ์ธรรมชาติ
+            </p>
+          </div>
+
+          <div
+            class="values-grid"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 2rem;
+              margin-bottom: 3rem;
+            ">
+            <div
+              class="value-card"
+              style="
+                background: white;
+                border-radius: 1rem;
+                padding: 2rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #16a34a;
+              ">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1.5rem;
+                  color: white;
+                  font-size: 1.5rem;
+                ">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h4
+                style="
+                  color: #1f2937;
+                  font-size: 1.25rem;
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                ">
+                ความยั่งยืน
+              </h4>
+              <p style="color: #6b7280; line-height: 1.6">
+                การดำเนินงานที่คำนึงถึงสมดุลระหว่างการอนุรักษ์ธรรมชาติและการใช้ประโยชน์อย่างยั่งยืนเพื่อคนรุ่นต่อไป
+              </p>
+            </div>
+
+            <div
+              class="value-card"
+              style="
+                background: white;
+                border-radius: 1rem;
+                padding: 2rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #2563eb;
+              ">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1.5rem;
+                  color: white;
+                  font-size: 1.5rem;
+                ">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h4
+                style="
+                  color: #1f2937;
+                  font-size: 1.25rem;
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                ">
+                การมีส่วนร่วม
+              </h4>
+              <p style="color: #6b7280; line-height: 1.6">
+                ส่งเสริมให้ทุกภาคส่วนของสังคมเข้ามามีบทบาทในการอนุรักษ์และดูแลทรัพยากรธรรมชาติร่วมกัน
+              </p>
+            </div>
+
+            <div
+              class="value-card"
+              style="
+                background: white;
+                border-radius: 1rem;
+                padding: 2rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #dc2626;
+              ">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1.5rem;
+                  color: white;
+                  font-size: 1.5rem;
+                ">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h4
+                style="
+                  color: #1f2937;
+                  font-size: 1.25rem;
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                ">
+                ความรับผิดชอบ
+              </h4>
+              <p style="color: #6b7280; line-height: 1.6">
+                ความมุ่งมั่นในการปกป้องและดูแลทรัพยากรธรรมชาติของชาติด้วยความซื่อสัตย์และโปร่งใส
+              </p>
+            </div>
+
+            <div
+              class="value-card"
+              style="
+                background: white;
+                border-radius: 1rem;
+                padding: 2rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #f59e0b;
+              ">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1.5rem;
+                  color: white;
+                  font-size: 1.5rem;
+                ">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h4
+                style="
+                  color: #1f2937;
+                  font-size: 1.25rem;
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                ">
+                นวัตกรรม
+              </h4>
+              <p style="color: #6b7280; line-height: 1.6">
+                การพัฒนาและนำเทคโนโลยีใหม่มาใช้ในการอนุรักษ์ธรรมชาติอย่างมีประสิทธิภาพและทันสมัย
+              </p>
+            </div>
+
+            <div
+              class="value-card"
+              style="
+                background: white;
+                border-radius: 1rem;
+                padding: 2rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #7c3aed;
+              ">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1.5rem;
+                  color: white;
+                  font-size: 1.5rem;
+                ">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h4
+                style="
+                  color: #1f2937;
+                  font-size: 1.25rem;
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                ">
+                การศึกษา
+              </h4>
+              <p style="color: #6b7280; line-height: 1.6">
+                การสร้างความรู้ ความเข้าใจ
+                และจิตสำนึกรักธรรมชาติให้กับประชาชนทุกกลุ่มวัย
+              </p>
+            </div>
+
+            <div
+              class="value-card"
+              style="
+                background: white;
+                border-radius: 1rem;
+                padding: 2rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #059669;
+              ">
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 1.5rem;
+                  color: white;
+                  font-size: 1.5rem;
+                ">
+                <i class="fas fa-globe-asia"></i>
+              </div>
+              <h4
+                style="
+                  color: #1f2937;
+                  font-size: 1.25rem;
+                  font-weight: bold;
+                  margin-bottom: 1rem;
+                ">
+                ความร่วมมือระหว่างประเทศ
+              </h4>
+              <p style="color: #6b7280; line-height: 1.6">
+                การแลกเปลี่ยนความรู้และประสบการณ์กับองค์กรระหว่างประเทศเพื่อการอนุรักษ์ที่มีประสิทธิผล
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== ACHIEVEMENTS & STATISTICS ========== -->
+        <section class="content-section">
+          <div class="section-title">
+            <h2>
+              <i class="fas fa-trophy"></i>
+              ผลงานและสถิติสำคัญ
+            </h2>
+            <p>
+              ตัวเลขที่สะท้อนถึงความสำเร็จในการอนุรักษ์ธรรมชาติและการให้บริการประชาชน
+            </p>
+          </div>
+
+          <div
+            class="stats-section"
+            style="
+              background: white;
+              border-radius: 1.5rem;
+              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+              padding: 3rem;
+              margin-bottom: 3rem;
+            ">
+            <div
+              class="stats-grid-large"
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+              ">
+              <div
+                class="stat-item"
+                style="
+                  text-align: center;
+                  padding: 1.5rem;
+                  border-radius: 1rem;
+                  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+                ">
+                <div
+                  style="
+                    font-size: 3rem;
+                    font-weight: bold;
+                    color: #16a34a;
+                    margin-bottom: 0.5rem;
+                  ">
+                  147
+                </div>
+                <div
+                  style="
+                    color: #15803d;
+                    font-weight: 600;
+                    margin-bottom: 0.25rem;
+                  ">
+                  อุทยานแห่งชาติ
+                </div>
+                <div style="color: #6b7280; font-size: 0.875rem">
+                  ทั่วประเทศ
+                </div>
+              </div>
+
+              <div
+                class="stat-item"
+                style="
+                  text-align: center;
+                  padding: 1.5rem;
+                  border-radius: 1rem;
+                  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+                ">
+                <div
+                  style="
+                    font-size: 3rem;
+                    font-weight: bold;
+                    color: #2563eb;
+                    margin-bottom: 0.5rem;
+                  ">
+                  58
+                </div>
+                <div
+                  style="
+                    color: #1d4ed8;
+                    font-weight: 600;
+                    margin-bottom: 0.25rem;
+                  ">
+                  เขตรักษาพันธุ์สัตว์ป่า
+                </div>
+                <div style="color: #6b7280; font-size: 0.875rem">
+                  พื้นที่อนุรักษ์
+                </div>
+              </div>
+
+              <div
+                class="stat-item"
+                style="
+                  text-align: center;
+                  padding: 1.5rem;
+                  border-radius: 1rem;
+                  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                ">
+                <div
+                  style="
+                    font-size: 3rem;
+                    font-weight: bold;
+                    color: #f59e0b;
+                    margin-bottom: 0.5rem;
+                  ">
+                  1,200+
+                </div>
+                <div
+                  style="
+                    color: #d97706;
+                    font-weight: 600;
+                    margin-bottom: 0.25rem;
+                  ">
+                  ชนิดสัตว์ป่า
+                </div>
+                <div style="color: #6b7280; font-size: 0.875rem">
+                  ที่ได้รับการคุ้มครอง
+                </div>
+              </div>
+
+              <div
+                class="stat-item"
+                style="
+                  text-align: center;
+                  padding: 1.5rem;
+                  border-radius: 1rem;
+                  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+                ">
+                <div
+                  style="
+                    font-size: 3rem;
+                    font-weight: bold;
+                    color: #ec4899;
+                    margin-bottom: 0.5rem;
+                  ">
+                  15M+
+                </div>
+                <div
+                  style="
+                    color: #db2777;
+                    font-weight: 600;
+                    margin-bottom: 0.25rem;
+                  ">
+                  นักท่องเที่ยว
+                </div>
+                <div style="color: #6b7280; font-size: 0.875rem">ต่อปี</div>
+              </div>
+            </div>
+
+            <div
+              class="achievement-grid"
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+              ">
+              <div
+                class="achievement-card"
+                style="
+                  background: #f8fafc;
+                  border-radius: 1rem;
+                  padding: 2rem;
+                  border-left: 4px solid #16a34a;
+                ">
+                <h4
+                  style="
+                    color: #1f2937;
+                    font-size: 1.25rem;
+                    font-weight: bold;
+                    margin-bottom: 1rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                  ">
+                  <i class="fas fa-award" style="color: #f59e0b"></i>
+                  รางวัลระดับโลก
+                </h4>
+                <p
+                  style="color: #4b5563; margin-bottom: 1rem; line-height: 1.6">
+                  อุทยานแห่งชาติเขาใหญ่ได้รับการขึ้นทะเบียนเป็นมรดกโลกทางธรรมชาติจาก
+                  UNESCO
+                </p>
+                <span
+                  style="color: #16a34a; font-weight: 600; font-size: 0.875rem"
+                  >UNESCO World Heritage Site</span
+                >
+              </div>
+
+              <div
+                class="achievement-card"
+                style="
+                  background: #f8fafc;
+                  border-radius: 1rem;
+                  padding: 2rem;
+                  border-left: 4px solid #2563eb;
+                ">
+                <h4
+                  style="
+                    color: #1f2937;
+                    font-size: 1.25rem;
+                    font-weight: bold;
+                    margin-bottom: 1rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                  ">
+                  <i class="fas fa-leaf" style="color: #16a34a"></i>
+                  การอนุรักษ์ที่ยั่งยืน
+                </h4>
+                <p
+                  style="color: #4b5563; margin-bottom: 1rem; line-height: 1.6">
+                  โครงการอนุรักษ์เสือโคร่งที่ประสบความสำเร็จในการเพิ่มประชากรสัตว์ป่าหายาก
+                </p>
+                <span
+                  style="color: #2563eb; font-weight: 600; font-size: 0.875rem"
+                  >Tiger Conservation Program</span
+                >
+              </div>
+
+              <div
+                class="achievement-card"
+                style="
+                  background: #f8fafc;
+                  border-radius: 1rem;
+                  padding: 2rem;
+                  border-left: 4px solid #dc2626;
+                ">
+                <h4
+                  style="
+                    color: #1f2937;
+                    font-size: 1.25rem;
+                    font-weight: bold;
+                    margin-bottom: 1rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                  ">
+                  <i class="fas fa-users" style="color: #7c3aed"></i>
+                  การมีส่วนร่วมของชุมชน
+                </h4>
+                <p
+                  style="color: #4b5563; margin-bottom: 1rem; line-height: 1.6">
+                  โครงการอาสาสมัครอนุรักษ์ธรรมชาติที่มีผู้เข้าร่วมกว่า 50,000
+                  คนทั่วประเทศ
+                </p>
+                <span
+                  style="color: #dc2626; font-weight: 600; font-size: 0.875rem"
+                  >Community Conservation Network</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== HISTORY ========== -->
+        <!-- <section class="content-section">
+          <div class="section-title">
+            <h2>
+              <i class="fas fa-history"></i>
+              ประวัติความเป็นมา
+            </h2>
+            <p>
+              เส้นทางการพัฒนาและก้าวหน้าของกรมอุทยานแห่งชาติ สัตว์ป่า
+              และพันธุ์พืช
+            </p>
+          </div>
+
+          <div class="history-section">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-year">2502</div>
+                <div class="timeline-content">
+                  <h4>การก่อตั้งกรมป่าไม้</h4>
+                  <p>
+                    เริ่มต้นจากการจัดตั้งกรมป่าไม้
+                    เป็นหน่วยงานหลักในการดูแลทรัพยากรป่าไม้ของประเทศ
+                    ภายใต้กระทรวงเกษตรและสหกรณ์
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2504</div>
+                <div class="timeline-content">
+                  <h4>อุทยานแห่งชาติแห่งแรก</h4>
+                  <p>
+                    การประกาศจัดตั้งอุทยานแห่งชาติเขาใหญ่
+                    เป็นอุทยานแห่งชาติแห่งแรกของประเทศไทย
+                    เพื่อการอนุรักษ์ธรรมชาติและสัตว์ป่า
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2542</div>
+                <div class="timeline-content">
+                  <h4>การปฏิรูปโครงสร้าง</h4>
+                  <p>
+                    แยกกรมสัตว์ป่าและพันธุ์พืชออกจากกรมป่าไม้
+                    เพื่อความเชี่ยวชาญเฉพาะด้าน
+                    ในการอนุรักษ์สัตว์ป่าและความหลากหลายทางชีวภาพ
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2545</div>
+                <div class="timeline-content">
+                  <h4>การรวมองค์กร</h4>
+                  <p>
+                    รวมกรมอุทยานแห่งชาติกับกรมสัตว์ป่าและพันธุ์พืช เป็น
+                    "กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช"
+                    เพื่อการบริหารจัดการที่มีประสิทธิภาพ
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-year">2568</div>
+                <div class="timeline-content">
+                  <h4>ยุคดิจิทัลและนวัตกรรม</h4>
+                  <p>
+                    การพัฒนาระบบจัดการดิจิทัล การใช้เทคโนโลยี AI และ IoT
+                    ในการติดตามและอนุรักษ์ธรรมชาติ
+                    รวมทั้งการส่งเสริมการท่องเที่ยวเชิงนิเวศ
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> -->
+
+        <!-- ========== ORGANIZATION ========== -->
+        <section class="content-section">
+          <div class="section-title">
+            <h2>
+              <i class="fas fa-sitemap"></i>
+              โครงสร้างองค์กร
+            </h2>
+            <p>
+              การจัดระเบียบและหน่วยงานภายในกรมอุทยานแห่งชาติ สัตว์ป่า
+              และพันธุ์พืช
+            </p>
+          </div>
+
+          <div class="org-chart">
+            <div class="org-level">
+              <div class="org-position">
+                <h4>อธิบดีกรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช</h4>
+                <p>ผู้บริหารสูงสุดของกรม</p>
+              </div>
+            </div>
+
+            <div class="dept-grid">
+              <div class="dept-card">
+                <div class="dept-icon">
+                  <i class="fas fa-mountain"></i>
+                </div>
+                <h4>สำนักอุทยานแห่งชาติ</h4>
+                <p>
+                  จัดการและพัฒนาอุทยานแห่งชาติทั่วประเทศ
+                  ดูแลการท่องเที่ยวเชิงนิเวศ และการอนุรักษ์พื้นที่ป่าสงวน
+                </p>
+              </div>
+
+              <div class="dept-card">
+                <div class="dept-icon">
+                  <i class="fas fa-paw"></i>
+                </div>
+                <h4>สำนักอนุรักษ์สัตว์ป่า</h4>
+                <p>
+                  อนุรักษ์และคุ้มครองสัตว์ป่า การฟื้นฟูประชากรสัตว์ป่าหายาก
+                  และการดูแลศูนย์อนุบาลสัตว์ป่า
+                </p>
+              </div>
+
+              <div class="dept-card">
+                <div class="dept-icon">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <h4>สำนักอนุรักษ์พันธุ์พืช</h4>
+                <p>
+                  อนุรักษ์ความหลากหลายทางชีวภาพของพืช
+                  การจัดการธนาคารพันธุกรรมพืช และการวิจัยพัฒนาพันธุ์พืช
+                </p>
+              </div>
+
+              <div class="dept-card">
+                <div class="dept-icon">
+                  <i class="fas fa-search"></i>
+                </div>
+                <h4>สำนักวิจัยและพัฒนา</h4>
+                <p>
+                  วิจัยด้านการอนุรักษ์ธรรมชาติ พัฒนาเทคโนลยีใหม่
+                  และการติดตามประเมินผลการอนุรักษ์
+                </p>
+              </div>
+
+              <div class="dept-card">
+                <div class="dept-icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h4>สำนักส่งเสริมและพัฒนา</h4>
+                <p>
+                  การศึกษาธรรมชาติ การประชาสัมพันธ์
+                  การสร้างจิตสำนึกในการอนุรักษ์ และการพัฒนาบุคลากร
+                </p>
+              </div>
+
+              <div class="dept-card">
+                <div class="dept-icon">
+                  <i class="fas fa-cog"></i>
+                </div>
+                <h4>สำนักบริหารกลาง</h4>
+                <p>
+                  การบริหารงานบุคคล การคลัง การพัสดุ
+                  และระบบสารสนเทศเพื่อสนับสนุนการดำเนินงาน
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== CONTACT ========== -->
+        <section class="content-section">
+          <div class="section-title">
+            <h2>
+              <i class="fas fa-map-marker-alt"></i>
+              ข้อมูลติดต่อ
+            </h2>
+            <p>
+              ช่องทางการติดต่อและข้อมูลสำคัญของกรมอุทยานแห่งชาติ สัตว์ป่า
+              และพันธุ์พืช
+            </p>
+          </div>
+
+          <div class="contact-section">
+            <div class="contact-grid">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-building"></i>
+                </div>
+                <h4>สำนักงานใหญ่</h4>
+                <p>
+                  61 ถนนพหลโยธิน แขวงลาดยาว<br />
+                  เขตจตุจักร กรุงเทพมหานคร 10900<br />
+                  ประเทศไทย
+                </p>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <h4>โทรศัพท์</h4>
+                <p>
+                  สายด่วน: 1362<br />
+                  โทรศัพท์: 0-2579-0529<br />
+                  โทรสาร: 0-2579-6666
+                </p>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <h4>อีเมล</h4>
+                <p>
+                  info@dnp.go.th<br />
+                  webmaster@dnp.go.th<br />
+                  pr@dnp.go.th
+                </p>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <h4>เวลาทำการ</h4>
+                <p>
+                  จันทร์ - ศุกร์: 08:30 - 16:30<br />
+                  เสาร์ - อาทิตย์: หยุดราชการ<br />
+                  (ยกเว้นวันหยุดนักขัตฤกษ์)
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer
+      style="
+        background-color: #111827;
+        color: #d1d5db;
+        padding: 2rem 0;
+        margin-top: 3rem;
+      ">
+      <div class="container">
+        <div style="text-align: center">
+          <p style="font-size: 0.875rem; color: #9ca3af">
+            © 2025 กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช สงวนลิขสิทธิ์
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

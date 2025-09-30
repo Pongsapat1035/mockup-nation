@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>จัดการแบนเนอร์ - กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        min-height: 100vh;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      /* ========== HEADER STYLES ========== */
+      .page-header {
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        margin-bottom: 2rem;
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .logo-placeholder {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.25rem;
+      }
+
+      .logo-text h1 {
+        font-size: 0.875rem;
+        font-weight: bold;
+        color: #166534;
+        margin: 0;
+      }
+
+      .logo-text p {
+        font-size: 0.75rem;
+        color: #666;
+        margin: 0;
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #16a34a;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .back-btn:hover {
+        color: #15803d;
+      }
+
+      /* ========== PAGE TITLE ========== */
+      .page-title {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .page-title h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      .page-title p {
+        color: #6b7280;
+        font-size: 1rem;
+      }
+
+      /* ========== ACTION BAR ========== */
+      .action-bar {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .search-box {
+        flex: 1;
+        max-width: 400px;
+        position: relative;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: #16a34a;
+        box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6b7280;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(22, 163, 74, 0.3);
+      }
+
+      .btn-secondary {
+        background: #f3f4f6;
+        color: #374151;
+        border: 1px solid #d1d5db;
+      }
+
+      .btn-secondary:hover {
+        background: #e5e7eb;
+      }
+
+      .btn-success {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        color: white;
+      }
+
+      .btn-success:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+      }
+
+      .btn-danger {
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        color: white;
+      }
+
+      .btn-danger:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+      }
+
+      /* ========== BANNER GRID ========== */
+      .banner-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .banner-card {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .banner-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .banner-preview {
+        position: relative;
+        height: 200px;
+        background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .banner-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .banner-placeholder {
+        color: #1e40af;
+        font-size: 3rem;
+        text-align: center;
+      }
+
+      .status-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .status-active {
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        color: white;
+      }
+
+      .status-inactive {
+        background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        color: white;
+      }
+
+      .banner-info {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .banner-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+      }
+
+      .banner-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .banner-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .banner-description {
+        color: #4b5563;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        flex-grow: 1;
+      }
+
+      .banner-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: auto;
+      }
+
+      .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      /* ========== MODAL STYLES ========== */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .modal.show {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        border-radius: 1rem;
+        max-width: 800px;
+        width: 100%;
+        max-height: 95vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .modal-header {
+        background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 1rem 1rem 0 0;
+      }
+
+      .modal-header h2 {
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .modal-body {
+        padding: 1.5rem;
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #fafafa;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #16a34a;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+      }
+
+      .file-upload {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+
+      .file-input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .file-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        border: 2px dashed #cbd5e1;
+        border-radius: 0.5rem;
+        background: #f8fafc;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .file-label:hover {
+        border-color: #16a34a;
+        background: #f0fdf4;
+      }
+
+      .file-label i {
+        font-size: 2rem;
+        color: #64748b;
+      }
+
+      .file-label:hover i {
+        color: #16a34a;
+      }
+
+      .modal-footer {
+        padding: 1.5rem 2rem;
+        border-top: 1px solid #e5e7eb;
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.25rem;
+      }
+
+      .close-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* ========== STATS CARDS ========== */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #16a34a;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: #6b7280;
+        font-size: 0.875rem;
+      }
+
+      /* ========== RESPONSIVE DESIGN ========== */
+      @media (min-width: 768px) {
+        .banner-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .banner-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .action-bar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .search-box {
+          max-width: none;
+        }
+
+        .banner-actions {
+          flex-direction: column;
+        }
+
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .logo-section {
+          justify-content: center;
+        }
+
+        .page-title h1 {
+          font-size: 1.5rem;
+        }
+
+        .modal-body {
+          padding: 1rem;
+        }
+
+        .modal-content {
+          max-width: 90vw;
+        }
+
+        .modal-body form > div {
+          grid-template-columns: 1fr !important;
+          gap: 1rem !important;
+        }
+
+        .modal-footer {
+          padding: 1rem;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER ========== -->
+    <header class="page-header">
+      <div class="header-content">
+        <!-- Logo Section -->
+        <div class="logo-section">
+          <div class="logo-placeholder">
+            <i class="fas fa-tree"></i>
+          </div>
+          <div class="logo-text">
+            <h1>กรมอุทยานแห่งชาติ</h1>
+            <p>สัตว์ป่า และพันธุ์พืช</p>
+          </div>
+        </div>
+
+        <!-- Back Button -->
+        <a href="service.html" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+          กลับหน้าหลัก
+        </a>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Page Title -->
+      <div class="page-title">
+        <h1>
+          <i class="fas fa-image"></i>
+          จัดการแบนเนอร์เว็บไซต์
+        </h1>
+        <p>จัดการแบนเนอร์หน้าหลักและโปรโมชั่นต่างๆ ของเว็บไซต์</p>
+      </div>
+
+      <!-- Statistics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="totalBanners">8</div>
+          <div class="stat-label">แบนเนอร์ทั้งหมด</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="activeBanners">5</div>
+          <div class="stat-label">แบนเนอร์ที่เปิดใช้งาน</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="inactiveBanners">3</div>
+          <div class="stat-label">แบนเนอร์ที่ปิดใช้งาน</div>
+        </div>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="ค้นหาแบนเนอร์..."
+            id="searchInput" />
+        </div>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap">
+          <button class="btn btn-secondary" onclick="filterBanners('all')">
+            <i class="fas fa-list"></i>
+            ทั้งหมด
+          </button>
+          <button class="btn btn-secondary" onclick="filterBanners('active')">
+            <i class="fas fa-eye"></i>
+            เปิดใช้งาน
+          </button>
+          <button class="btn btn-secondary" onclick="filterBanners('inactive')">
+            <i class="fas fa-eye-slash"></i>
+            ปิดใช้งาน
+          </button>
+          <button class="btn btn-primary" onclick="openAddModal()">
+            <i class="fas fa-plus"></i>
+            เพิ่มแบนเนอร์ใหม่
+          </button>
+        </div>
+      </div>
+
+      <!-- Banner Grid -->
+      <div class="banner-grid" id="bannerGrid">
+        <!-- Banners will be populated here -->
+      </div>
+    </div>
+
+    <!-- Add/Edit Banner Modal -->
+    <div class="modal" id="bannerModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">
+            <i class="fas fa-plus"></i>
+            เพิ่มแบนเนอร์ใหม่
+          </h2>
+          <button class="close-btn" onclick="closeBannerModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <form id="bannerForm">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                height: 100%;
+              ">
+              <!-- Left Column -->
+              <div>
+                <div class="form-group">
+                  <label for="bannerTitle"
+                    >ชื่อแบนเนอร์ <span style="color: #dc2626">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="bannerTitle"
+                    class="form-control"
+                    placeholder="ระบุชื่อแบนเนอร์"
+                    required />
+                </div>
+
+                <div class="form-group">
+                  <label for="bannerDescription">คำอธิบาย</label>
+                  <textarea
+                    id="bannerDescription"
+                    class="form-control"
+                    rows="2"
+                    placeholder="คำอธิบายสั้นๆ เกี่ยวกับแบนเนอร์"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="bannerLink">ลิงก์ปรับปรุง (ไม่บังคับ)</label>
+                  <input
+                    type="url"
+                    id="bannerLink"
+                    class="form-control"
+                    placeholder="https://example.com" />
+                </div>
+
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                  ">
+                  <div class="form-group">
+                    <label for="bannerOrder">ลำดับการแสดง</label>
+                    <input
+                      type="number"
+                      id="bannerOrder"
+                      class="form-control"
+                      value="1"
+                      min="1" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="bannerStatus">สถานะ</label>
+                    <select id="bannerStatus" class="form-control">
+                      <option value="active">เปิดใช้งาน</option>
+                      <option value="inactive">ปิดใช้งาน</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div>
+                <div class="form-group">
+                  <label for="bannerImage"
+                    >รูปภาพแบนเนอร์ <span style="color: #dc2626">*</span></label
+                  >
+                  <div class="file-upload">
+                    <input
+                      type="file"
+                      id="bannerImage"
+                      class="file-input"
+                      accept="image/*"
+                      required />
+                    <label
+                      for="bannerImage"
+                      class="file-label"
+                      style="padding: 1.5rem">
+                      <i class="fas fa-cloud-upload-alt"></i>
+                      <div>
+                        <strong>คลิกเพื่อเลือกรูปภาพ</strong><br />
+                        <span style="color: #64748b; font-size: 0.875rem"
+                          >รองรับไฟล์ JPG, PNG<br />ขนาดแนะนำ 1920x600px</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div id="imagePreview" style="margin-top: 1rem"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeBannerModal()">
+            <i class="fas fa-times"></i>
+            ยกเลิก
+          </button>
+          <button type="submit" class="btn btn-primary" onclick="saveBanner()">
+            <i class="fas fa-save"></i>
+            บันทึก
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ========== SAMPLE DATA ========== //
+      let banners = [
+        {
+          id: 1,
+          title: "โครงการอนุรักษ์เสือโคร่ง 2568",
+          description: "ร่วมสนับสนุนโครงการอนุรักษ์เสือโคร่งในป่าตะวันออก",
+          image: null,
+          link: "https://example.com/tiger-project",
+          status: "active",
+          order: 1,
+          createdDate: "2025-09-25",
+        },
+        {
+          id: 2,
+          title: "เปิดอุทยานแห่งชาติใหม่ จังหวัดเชียงใหม่",
+          description: "ต้อนรับการเปิดอุทยานแห่งชาติแห่งใหม่ในภาคเหนือ",
+          image: null,
+          link: "",
+          status: "active",
+          order: 2,
+          createdDate: "2025-09-24",
+        },
+        {
+          id: 3,
+          title: "งานสัมมนาการอนุรักษ์ป่าชายเลน",
+          description: "เชิญร่วมงานสัมมนาการอนุรักษ์ป่าชายเลนภาคใต้",
+          image: null,
+          link: "https://example.com/seminar",
+          status: "inactive",
+          order: 3,
+          createdDate: "2025-09-23",
+        },
+        {
+          id: 4,
+          title: "โครงการค่ายเยาวชนรักธรรมชาติ",
+          description: "สมัครเข้าร่วมค่ายเยาวชนรักธรรมชาติ ครั้งที่ 15",
+          image: null,
+          link: "",
+          status: "active",
+          order: 4,
+          createdDate: "2025-09-22",
+        },
+        {
+          id: 5,
+          title: "การประกวดภาพถ่ายธรรมชาติ",
+          description: "ร่วมประกวดภาพถ่ายธรรมชาติแห่งปี พร้อมรางวัลมากมาย",
+          image: null,
+          link: "https://example.com/photo-contest",
+          status: "active",
+          order: 5,
+          createdDate: "2025-09-21",
+        },
+        {
+          id: 6,
+          title: "มหกรรมท่องเที่ยวเชิงนิเวศ",
+          description: "งานแสดงสินค้าและการท่องเที่ยวเชิงนิเวศ",
+          image: null,
+          link: "",
+          status: "inactive",
+          order: 6,
+          createdDate: "2025-09-20",
+        },
+        {
+          id: 7,
+          title: "โครงการปลูกป่า 1 ล้านต้น",
+          description: "ร่วมปลูกป่าเพื่อลูกหลาน 1 ล้านต้นทั่วประเทศ",
+          image: null,
+          link: "https://example.com/plant-trees",
+          status: "active",
+          order: 7,
+          createdDate: "2025-09-19",
+        },
+        {
+          id: 8,
+          title: "เทศกาลนกอพยพแห่งชาติ",
+          description: "เชิญชมและเรียนรู้เกี่ยวกับนกอพยพในประเทศไทย",
+          image: null,
+          link: "",
+          status: "inactive",
+          order: 8,
+          createdDate: "2025-09-18",
+        },
+      ];
+
+      let currentFilter = "all";
+      let editingBannerId = null;
+
+      // ========== RENDER FUNCTIONS ========== //
+      function renderBanners(bannersToRender = banners) {
+        const grid = document.getElementById("bannerGrid");
+
+        if (bannersToRender.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #6b7280;">
+              <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+              <p style="font-size: 1.125rem;">ไม่พบแบนเนอร์ที่ค้นหา</p>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = bannersToRender
+          .map(
+            (banner) => `
+          <div class="banner-card" data-status="${banner.status}">
+            <div class="banner-preview">
+              ${
+                banner.image
+                  ? `<img src="${banner.image}" alt="${banner.title}" />`
+                  : `<div class="banner-placeholder"><i class="fas fa-image"></i></div>`
+              }
+              <div class="status-badge status-${banner.status}">
+                <i class="fas fa-${
+                  banner.status === "active" ? "eye" : "eye-slash"
+                }"></i>
+                ${banner.status === "active" ? "เปิดใช้งาน" : "ปิดใช้งาน"}
+              </div>
+            </div>
+            <div class="banner-info">
+              <h3 class="banner-title">${banner.title}</h3>
+              <div class="banner-meta">
+                <span><i class="fas fa-calendar-alt"></i> ${formatDate(
+                  banner.createdDate
+                )}</span>
+                <span><i class="fas fa-sort"></i> ลำดับ ${banner.order}</span>
+              </div>
+              <p class="banner-description">${banner.description}</p>
+              <div class="banner-actions">
+                <button class="btn ${
+                  banner.status === "active" ? "btn-danger" : "btn-success"
+                } btn-sm" 
+                        onclick="toggleStatus(${banner.id})">
+                  <i class="fas fa-${
+                    banner.status === "active" ? "eye-slash" : "eye"
+                  }"></i>
+                  ${banner.status === "active" ? "ปิดใช้งาน" : "เปิดใช้งาน"}
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="editBanner(${
+                  banner.id
+                })">
+                  <i class="fas fa-edit"></i>
+                  แก้ไข
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="deleteBanner(${
+                  banner.id
+                })" title="ลบแบนเนอร์">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+      }
+
+      function updateStats() {
+        const total = banners.length;
+        const active = banners.filter((b) => b.status === "active").length;
+        const inactive = total - active;
+
+        document.getElementById("totalBanners").textContent = total;
+        document.getElementById("activeBanners").textContent = active;
+        document.getElementById("inactiveBanners").textContent = inactive;
+      }
+
+      function formatDate(dateString) {
+        const options = {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          locale: "th-TH",
+        };
+        return new Date(dateString).toLocaleDateString("th-TH", options);
+      }
+
+      // ========== FILTER FUNCTIONS ========== //
+      function filterBanners(status) {
+        currentFilter = status;
+        let filtered = banners;
+
+        if (status !== "all") {
+          filtered = banners.filter((banner) => banner.status === status);
+        }
+
+        // Apply search filter if there's search text
+        const searchText = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        if (searchText) {
+          filtered = filtered.filter(
+            (banner) =>
+              banner.title.toLowerCase().includes(searchText) ||
+              banner.description.toLowerCase().includes(searchText)
+          );
+        }
+
+        renderBanners(filtered);
+
+        // Update filter button states
+        document
+          .querySelectorAll(".action-bar .btn-secondary")
+          .forEach((btn) => {
+            btn.style.background = "#f3f4f6";
+            btn.style.color = "#374151";
+          });
+        event.target.style.background = "#16a34a";
+        event.target.style.color = "white";
+      }
+
+      function searchBanners() {
+        const searchText = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        let filtered = banners;
+
+        if (currentFilter !== "all") {
+          filtered = banners.filter(
+            (banner) => banner.status === currentFilter
+          );
+        }
+
+        if (searchText) {
+          filtered = filtered.filter(
+            (banner) =>
+              banner.title.toLowerCase().includes(searchText) ||
+              banner.description.toLowerCase().includes(searchText)
+          );
+        }
+
+        renderBanners(filtered);
+      }
+
+      // ========== BANNER MANAGEMENT ========== //
+      function toggleStatus(bannerId) {
+        const banner = banners.find((b) => b.id === bannerId);
+        if (banner) {
+          banner.status = banner.status === "active" ? "inactive" : "active";
+          updateStats();
+          searchBanners(); // Re-render with current filters
+
+          // Show success message
+          showToast(
+            `แบนเนอร์ "${banner.title}" ถูก${
+              banner.status === "active" ? "เปิด" : "ปิด"
+            }ใช้งานแล้ว`,
+            "success"
+          );
+        }
+      }
+
+      function editBanner(bannerId) {
+        const banner = banners.find((b) => b.id === bannerId);
+        if (banner) {
+          editingBannerId = bannerId;
+
+          // Populate form
+          document.getElementById("bannerTitle").value = banner.title;
+          document.getElementById("bannerDescription").value =
+            banner.description;
+          document.getElementById("bannerLink").value = banner.link || "";
+          document.getElementById("bannerOrder").value = banner.order;
+          document.getElementById("bannerStatus").value = banner.status;
+
+          // Update modal title
+          document.getElementById("modalTitle").innerHTML = `
+            <i class="fas fa-edit"></i>
+            แก้ไขแบนเนอร์
+          `;
+
+          // Show modal
+          document.getElementById("bannerModal").classList.add("show");
+        }
+      }
+
+      function deleteBanner(bannerId) {
+        const banner = banners.find((b) => b.id === bannerId);
+        if (
+          banner &&
+          confirm(`คุณต้องการลบแบนเนอร์ "${banner.title}" หรือไม่?`)
+        ) {
+          banners = banners.filter((b) => b.id !== bannerId);
+          updateStats();
+          searchBanners();
+          showToast("ลบแบนเนอร์เรียบร้อยแล้ว", "success");
+        }
+      }
+
+      // ========== MODAL FUNCTIONS ========== //
+      function openAddModal() {
+        editingBannerId = null;
+        document.getElementById("bannerForm").reset();
+        document.getElementById("bannerOrder").value = banners.length + 1;
+        document.getElementById("imagePreview").innerHTML = "";
+
+        // Update modal title
+        document.getElementById("modalTitle").innerHTML = `
+          <i class="fas fa-plus"></i>
+          เพิ่มแบนเนอร์ใหม่
+        `;
+
+        document.getElementById("bannerModal").classList.add("show");
+      }
+
+      function closeBannerModal() {
+        document.getElementById("bannerModal").classList.remove("show");
+      }
+
+      function saveBanner() {
+        const form = document.getElementById("bannerForm");
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const formData = {
+          title: document.getElementById("bannerTitle").value,
+          description: document.getElementById("bannerDescription").value,
+          link: document.getElementById("bannerLink").value,
+          order: parseInt(document.getElementById("bannerOrder").value),
+          status: document.getElementById("bannerStatus").value,
+        };
+
+        if (editingBannerId) {
+          // Update existing banner
+          const banner = banners.find((b) => b.id === editingBannerId);
+          Object.assign(banner, formData);
+          showToast("แก้ไขแบนเนอร์เรียบร้อยแล้ว", "success");
+        } else {
+          // Add new banner
+          const newBanner = {
+            id: Math.max(...banners.map((b) => b.id)) + 1,
+            ...formData,
+            image: null, // In real implementation, handle file upload
+            createdDate: new Date().toISOString().split("T")[0],
+          };
+          banners.push(newBanner);
+          showToast("เพิ่มแบนเนอร์ใหม่เรียบร้อยแล้ว", "success");
+        }
+
+        updateStats();
+        searchBanners();
+        closeBannerModal();
+      }
+
+      // ========== FILE PREVIEW ========== //
+      document
+        .getElementById("bannerImage")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          const preview = document.getElementById("imagePreview");
+
+          if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              preview.innerHTML = `
+              <div style="border: 2px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden;">
+                <img src="${e.target.result}" alt="Preview" style="width: 100%; height: 200px; object-fit: cover;" />
+              </div>
+            `;
+            };
+            reader.readAsDataURL(file);
+          } else {
+            preview.innerHTML = "";
+          }
+        });
+
+      // ========== UTILITY FUNCTIONS ========== //
+      function showToast(message, type = "info") {
+        // Simple toast notification (you can enhance this)
+        const toast = document.createElement("div");
+        toast.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: ${type === "success" ? "#16a34a" : "#dc2626"};
+          color: white;
+          padding: 1rem 2rem;
+          border-radius: 0.5rem;
+          z-index: 3000;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
+      // ========== EVENT LISTENERS ========== //
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", searchBanners);
+
+      // Close modal when clicking outside
+      document
+        .getElementById("bannerModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeBannerModal();
+          }
+        });
+
+      // ========== INITIALIZATION ========== //
+      document.addEventListener("DOMContentLoaded", function () {
+        renderBanners();
+        updateStats();
+      });
+    </script>
+  </body>
+</html>
