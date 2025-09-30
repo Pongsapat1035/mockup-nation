@@ -55,6 +55,7 @@ header {
   height: 48px;
   border-radius: 50%;
   /* background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); */
+  /* background: url("https://png.pngtree.com/thumb_back/fw800/background/20240726/pngtree-3d-a-forest-with-fog-and-trees-in-the-background-image_16116121.jpg"); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +140,8 @@ nav a:hover {
 /* ========== HERO BANNER ========== */
 .hero {
   height: 700px;
-  background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
+  /* background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%); */
+  background: url("https://live.staticflickr.com/65535/53944904334_75ee16746b_3k.jpg");
   display: flex;
   align-items: center;
   justify-content: center;
@@ -353,6 +355,7 @@ section {
   justify-content: center;
   color: #1e40af;
   font-size: 3rem;
+  overflow: hidden;
 }
 
 .featured-news-content {
