@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      บริการและเมนูเว็บไซต์ - กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f9fafb;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      /* ========== HEADER STYLES (UNIQUE CLASSES) ========== */
+      .service-header {
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .service-header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+      }
+
+      .service-logo-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .service-logo-placeholder {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.25rem;
+      }
+
+      .service-logo-text h1 {
+        font-size: 0.875rem;
+        font-weight: bold;
+        color: #166534;
+        margin: 0;
+      }
+
+      .service-logo-text p {
+        font-size: 0.75rem;
+        color: #666;
+        margin: 0;
+      }
+
+      .service-nav {
+        display: none;
+        gap: 2rem;
+      }
+
+      .service-nav a {
+        color: #374151;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .service-nav a:hover {
+        color: #16a34a;
+      }
+
+      .service-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .service-search-btn,
+      .service-menu-toggle {
+        background: none;
+        border: none;
+        color: #666;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .service-search-btn:hover,
+      .service-menu-toggle:hover {
+        color: #16a34a;
+      }
+
+      .service-language-switcher {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.75rem;
+      }
+
+      .service-language-switcher button {
+        background: none;
+        border: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .service-language-switcher .active {
+        color: #16a34a;
+      }
+
+      .service-language-switcher .inactive {
+        color: #9ca3af;
+      }
+
+      @media (min-width: 640px) {
+        .service-language-switcher {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .service-nav {
+          display: flex;
+        }
+
+        .service-menu-toggle {
+          display: none;
+        }
+      }
+
+      /* ========== HERO SECTION ========== */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #059669 0%,
+          #047857 50%,
+          #065f46 100%
+        );
+        padding: 4rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        color: white;
+        font-size: 1.125rem;
+        max-width: 600px;
+        margin: 0 auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      /* ========== SERVICES SECTION ========== */
+      .services-section {
+        padding: 4rem 0;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .section-header p {
+        color: #6b7280;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .service-card {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid #e5e7eb;
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        border-color: #16a34a;
+      }
+
+      .service-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(
+          135deg,
+          #d1fae5 0%,
+          #a7f3d0 50%,
+          #6ee7b7 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #047857;
+        font-size: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(22, 163, 74, 0.1);
+        transition: opacity 0.3s ease;
+      }
+
+      .service-card:hover .service-image::before {
+        opacity: 0;
+      }
+
+      .service-content {
+        padding: 1.5rem;
+      }
+
+      .service-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.75rem;
+      }
+
+      .service-desc {
+        color: #6b7280;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .service-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .service-link:hover {
+        background: linear-gradient(135deg, #15803d 0%, #14532d 100%);
+        transform: translateX(3px);
+      }
+
+      .service-link i {
+        transition: transform 0.3s ease;
+      }
+
+      .service-link:hover i {
+        transform: translateX(3px);
+      }
+
+      /* Service Categories */
+      .category-header {
+        text-align: center;
+        margin: 4rem 0 2rem;
+      }
+
+      .category-header h3 {
+        font-size: 1.5rem;
+        color: #16a34a;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .category-header p {
+        color: #6b7280;
+      }
+
+      /* Different icons for different services */
+      .icon-info {
+        color: #3b82f6;
+      }
+      .icon-booking {
+        color: #f59e0b;
+      }
+      .icon-education {
+        color: #8b5cf6;
+      }
+      .icon-research {
+        color: #06b6d4;
+      }
+      .icon-management {
+        color: #ef4444;
+      }
+      .icon-report {
+        color: #10b981;
+      }
+
+      /* ========== SECTION NAVIGATION ========== */
+      .section-nav {
+        background: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 80px;
+        z-index: 999;
+        border-top: 3px solid #16a34a;
+        transition: all 0.3s ease;
+      }
+
+      .section-nav.compact {
+        top: 70px;
+        border-top-width: 2px;
+      }
+
+      .nav-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .section-nav.compact .nav-menu {
+        padding: 1rem 0 0.5rem 0;
+        gap: 1rem;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        color: #6b7280;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .section-nav.compact .nav-item {
+        padding: 0.5rem 1rem;
+        gap: 0.25rem;
+      }
+
+      .nav-item:hover {
+        color: #16a34a;
+        background: #f0fdf4;
+        border-color: #bbf7d0;
+        transform: translateY(-2px);
+      }
+
+      .nav-item i {
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .section-nav.compact .nav-item i {
+        font-size: 1.25rem;
+      }
+
+      .nav-item:hover i {
+        transform: scale(1.1);
+      }
+
+      .nav-item span {
+        font-size: 0.875rem;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+      }
+
+      .section-nav.compact .nav-item span {
+        font-size: 0.75rem;
+      }
+
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Section spacing for navigation */
+      .services-section {
+        scroll-margin-top: 120px;
+      }
+
+      /* ========== RESPONSIVE DESIGN ========== */
+      @media (min-width: 640px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .hero h1 {
+          font-size: 3rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-menu {
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .section-nav.compact .nav-menu {
+          gap: 0.5rem;
+        }
+
+        .nav-item {
+          flex-direction: row;
+          min-width: 200px;
+          justify-content: center;
+        }
+
+        .section-nav.compact .nav-item {
+          min-width: 150px;
+          padding: 0.25rem 0.75rem;
+        }
+
+        .nav-item i {
+          font-size: 1.25rem;
+        }
+
+        .section-nav.compact .nav-item i {
+          font-size: 1rem;
+        }
+
+        .nav-item span {
+          font-size: 0.875rem;
+        }
+
+        .section-nav.compact .nav-item span {
+          font-size: 0.75rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .service-content {
+          padding: 1rem;
+        }
+
+        .nav-menu {
+          flex-direction: column;
+          gap: 0.75rem;
+          padding: 1.5rem 0;
+        }
+
+        .nav-item {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER ========== -->
+    <header class="service-header">
+      <div class="container">
+        <div class="service-header-content">
+          <!-- Logo Section -->
+          <div class="service-logo-section">
+            <div class="service-logo-placeholder">
+              <i class="fas fa-tree"></i>
+            </div>
+            <div class="service-logo-text">
+              <h1>กรมอุทยานแห่งชาติ</h1>
+              <p>สัตว์ป่า และพันธุ์พืช</p>
+            </div>
+          </div>
+
+          <!-- Navigation Menu (Desktop) -->
+          <nav
+            class="service-nav"
+            role="navigation"
+            aria-label="Main navigation">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="#">ข้อมูลอุทยานแห่งชาติ</a>
+            <a href="#">ข่าวสารและกิจกรรม</a>
+            <a href="knowledge.html">คลังความรู้</a>
+            <a href="#">เกี่ยวกับเรา</a>
+          </nav>
+
+          <!-- Search & Language Section -->
+          <div class="service-header-actions">
+            <button class="service-search-btn" aria-label="ค้นหา">
+              <i class="fas fa-search"></i>
+            </button>
+
+            <div class="service-language-switcher">
+              <button class="active">TH</button>
+              <span style="color: #9ca3af">|</span>
+              <button class="inactive">EN</button>
+            </div>
+
+            <button class="service-menu-toggle" aria-label="เปิดเมนู">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>บริการและเมนูเว็บไซต์</h1>
+          <p>
+            รวมบริการและระบบงานทั้งหมดของกรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION NAVIGATION ========== -->
+    <nav class="section-nav">
+      <div class="container">
+        <div class="nav-menu">
+          <a href="#public-services" class="nav-item">
+            <i class="fas fa-users"></i>
+            <span>บริการประชาชน</span>
+          </a>
+          <a href="#internal-services" class="nav-item">
+            <i class="fas fa-user-tie"></i>
+            <span>ระบบงานภายใน</span>
+          </a>
+          <a href="#decision-support" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>ระบบสนับสนุนตัดสินใจ</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+      <!-- ========== PUBLIC SERVICES ========== -->
+      <section class="services-section" id="public-services">
+        <div class="container">
+          <div class="category-header">
+            <h3>บริการสำหรับประชาชน</h3>
+            <p>ระบบและบริการที่เปิดให้ประชาชนทั่วไปใช้งาน</p>
+          </div>
+
+          <div class="services-grid">
+            <!-- Service Card 1 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-search icon-info"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ระบบบริหารข่าวและบทความ</h3>
+                <p class="service-desc">
+                  ติดตามข่าวสาร กิจกรรม และประกาศของกรมอุทยานแห่งชาติฯ
+                </p>
+                <a href="news_form.html" class="service-link">
+                  สร้างข่าวใหม่
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-calendar-check icon-booking"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ระบบจองเข้าอุทยานออนไลน์</h3>
+                <p class="service-desc">
+                  จองที่พักและกิจกรรมในอุทยานแห่งชาติออนไลน์ ง่าย สะดวก
+                  ประหยัดเวลา
+                </p>
+                <a href="#" class="service-link">
+                  จองออนไลน์
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-book-open icon-education"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">คลังความรู้ดิจิทัล</h3>
+                <p class="service-desc">
+                  ศึกษาข้อมูลสัตว์ป่า พันธุ์พืช และระบบนิเวศผ่านสื่อมัลติมีเดีย
+                </p>
+                <a href="#" class="service-link">
+                  เรียนรู้เพิ่มเติม
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Service Card 4 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-newspaper icon-info"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ข่าวสารและประกาศ</h3>
+                <p class="service-desc">
+                  ติดตามข่าวสาร กิจกรรม และประกาศของกรมอุทยานแห่งชาติฯ
+                </p>
+                <a href="#" class="service-link">
+                  อ่านข่าวสาร
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Service Card 5 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-camera icon-education"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">แกลเลอรีภาพ</h3>
+                <p class="service-desc">
+                  ชมภาพความงามของธรรมชาติและสัตว์ป่าในอุทยานแห่งชาติไทย
+                </p>
+                <a href="#" class="service-link">
+                  ชมแกลเลอรี
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Service Card 6 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-phone-alt icon-info"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ติดต่อสอบถาม</h3>
+                <p class="service-desc">
+                  ช่องทางติดต่อสอบถามข้อมูลและแจ้งปัญหาการใช้งาน
+                </p>
+                <a href="#" class="service-link">
+                  ติดต่อเรา
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== INTERNAL SERVICES ========== -->
+          <div class="category-header" id="internal-services">
+            <h3>ระบบงานภายใน</h3>
+            <p>ระบบสำหรับเจ้าหน้าที่และบุคลากรของกรมอุทยานแห่งชาติฯ</p>
+          </div>
+
+          <div class="services-grid">
+            <!-- Internal Service 1 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-user-tie icon-management"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ระบบบริหารงานบุคคล</h3>
+                <p class="service-desc">
+                  ระบบจัดการข้อมูลบุคลากร การลา การประเมินผล และการพัฒนาบุคลากร
+                </p>
+                <a href="#" class="service-link">
+                  เข้าสู่ระบบ
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Internal Service 2 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-chart-bar icon-report"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ระบบรายงานการดำเนินงาน</h3>
+                <p class="service-desc">
+                  สร้างและจัดการรายงานการปฏิบัติงาน สถิติผู้เยี่ยมชม
+                  และข้อมูลการอนุรักษ์
+                </p>
+                <a href="#" class="service-link">
+                  เข้าสู่ระบบ
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Internal Service 3 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-database icon-research"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ฐานข้อมูลการวิจัย</h3>
+                <p class="service-desc">
+                  จัดเก็บและค้นหาข้อมูลการวิจัย การสำรวจ และการติดตามสัตว์ป่า
+                </p>
+                <a href="#" class="service-link">
+                  เข้าสู่ระบบ
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Internal Service 4 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-clipboard-list icon-management"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ระบบจัดการเนื้อหาเว็บไซต์</h3>
+                <p class="service-desc">
+                  อัปเดทข่าวสาร กิจกรรม และข้อมูลต่างๆ บนเว็บไซต์หลัก
+                </p>
+                <a href="#" class="service-link">
+                  จัดการเนื้อหา
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ========== DECISION SUPPORT SYSTEMS ========== -->
+          <div class="category-header" id="decision-support">
+            <h3>ระบบสนับสนุนการตัดสินใจ</h3>
+            <p>เครื่องมือวิเคราะห์และรายงานสำหรับผู้บริหาร</p>
+          </div>
+
+          <div class="services-grid">
+            <!-- DSS Service 1 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-chart-line icon-report"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">แดชบอร์ดผู้บริหาร</h3>
+                <p class="service-desc">
+                  ภาพรวมข้อมูลสำคัญ สถิติการเยี่ยมชม
+                  และผลการดำเนินงานแบบเรียลไทม์
+                </p>
+                <a href="#" class="service-link">
+                  ดูแดชบอร์ด
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- DSS Service 2 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-map-marked-alt icon-research"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ระบบ GIS และการวิเคราะห์พื้นที่</h3>
+                <p class="service-desc">
+                  เครื่องมือวิเคราะห์ข้อมูลเชิงพื้นที่ การเปลี่ยนแปลงสิ่งแวดล้อม
+                  และการวางแผน
+                </p>
+                <a href="#" class="service-link">
+                  เข้าสู่ระบบ
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- DSS Service 3 -->
+            <div class="service-card">
+              <div class="service-image">
+                <i class="fas fa-file-alt icon-report"></i>
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">ระบบสร้างรายงานอัตโนมัติ</h3>
+                <p class="service-desc">
+                  สร้างรายงานประจำเดือน ประจำปี และรายงานพิเศษตามความต้องการ
+                </p>
+                <a href="#" class="service-link">
+                  สร้างรายงาน
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // ========== COMPACT NAVIGATION ON SCROLL ========== //
+      let lastScrollTop = 0;
+      const sectionNav = document.querySelector(".section-nav");
+
+      window.addEventListener("scroll", () => {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const heroSection = document.querySelector(".hero");
+        const heroHeight = heroSection ? heroSection.offsetHeight : 400;
+
+        // Add compact class when scrolled past hero section
+        if (scrollTop > heroHeight + 100) {
+          sectionNav.classList.add("compact");
+        } else {
+          sectionNav.classList.remove("compact");
+        }
+
+        lastScrollTop = scrollTop;
+      });
+
+      // ========== ACTIVE NAVIGATION ITEM ========== //
+      const navItems = document.querySelectorAll(".nav-item");
+      const sections = document.querySelectorAll("section[id]");
+
+      function updateActiveNav() {
+        let current = "";
+        const scrollPos = window.scrollY + 200;
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+
+          if (
+            scrollPos >= sectionTop &&
+            scrollPos < sectionTop + sectionHeight
+          ) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navItems.forEach((item) => {
+          item.classList.remove("active");
+          const href = item.getAttribute("href");
+          if (href === "#" + current) {
+            item.classList.add("active");
+          }
+        });
+      }
+
+      // Add active navigation styles
+      const style = document.createElement("style");
+      style.textContent = `
+        .nav-item.active {
+          color: #16a34a !important;
+          background: #dcfce7 !important;
+          border-color: #16a34a !important;
+        }
+      `;
+      document.head.appendChild(style);
+
+      window.addEventListener("scroll", updateActiveNav);
+      document.addEventListener("DOMContentLoaded", updateActiveNav);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- ========== HEADER ========== -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo Section -->
+          <div class="logo-section">
+            <div class="logo-placeholder">
+              <i class="fas fa-tree"></i>
+            </div>
+            <div class="logo-text">
+              <h1>กรมอุทยานแห่งชาติ</h1>
+              <p>สัตว์ป่า และพันธุ์พืช</p>
+            </div>
+          </div>
+
+          <!-- Navigation Menu (Desktop) -->
+          <nav role="navigation" aria-label="Main navigation">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="#">ข้อมูลอุทยานแห่งชาติ</a>
+            <a href="#">ข่าวสารและกิจกรรม</a>
+            <a href="knowledge.html">คลังความรู้</a>
+            <a href="#">เกี่ยวกับเรา</a>
+          </nav>
+
+          <!-- Search & Language Section -->
+          <div class="header-actions">
+            <button class="search-btn" aria-label="ค้นหา">
+              <i class="fas fa-search"></i>
+            </button>
+
+            <div class="language-switcher">
+              <button class="active">TH</button>
+              <span style="color: #9ca3af">|</span>
+              <button class="inactive">EN</button>
+            </div>
+
+            <button class="menu-toggle" aria-label="เปิดเมนู">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== HERO BANNER ========== -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2>สำรวจอุทยานแห่งชาติทั่วไทย</h2>
+        <p>
+          ค้นพบความงามของธรรมชาติ สัตว์ป่า
+          และพันธุ์พืชที่หลากหลายในอุทยานแห่งชาติของเรา
+        </p>
+
+        <div class="search-bar">
+          <input
+            type="text"
+            placeholder="ค้นหาอุทยานแห่งชาติที่คุณต้องการ..."
+            aria-label="ค้นหาอุทยานแห่งชาติ" />
+          <button aria-label="ค้นหา">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+      <!-- ========== NEWS SECTION ========== -->
+      <section class="bg-gray" id="news">
+        <div class="container">
+          <div class="section-header">
+            <h3>ข่าวสารและประกาศล่าสุด</h3>
+            <p>อัพเดทข่าวสารและกิจกรรมของกรมอุทยานแห่งชาติฯ</p>
+          </div>
+
+          <div class="news-grid">
+            <!-- Main Featured News -->
+            <article class="featured-news">
+              <div class="news-img-placeholder">
+                <i class="fas fa-newspaper"></i>
+              </div>
+              <div class="featured-news-content">
+                <div class="news-date">
+                  <i class="far fa-calendar-alt"></i>
+                  <time datetime="2025-09-28">28 กันยายน 2568</time>
+                </div>
+                <h4>
+                  <a href="#"
+                    >กรมอุทยานฯ
+                    เปิดตัวโครงการอนุรักษ์เสือโคร่งในเขตอุทยานแห่งชาติภาคตะวันออก</a
+                  >
+                </h4>
+                <p>
+                  กรมอุทยานแห่งชาติฯ ร่วมมือกับมูลนิธิสัตว์ป่าโลก
+                  เปิดตัวโครงการอนุรักษ์เสือโคร่งในพื้นที่ป่าตะวันออก
+                  เพื่อเพิ่มประชากรเสือโคร่งและรักษาความสมดุลของระบบนิเวศ
+                </p>
+                <a href="#" class="read-more">
+                  อ่านเพิ่มเติม
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- News List -->
+            <div class="news-list">
+              <article class="news-item">
+                <div class="news-date">
+                  <i class="far fa-calendar-alt"></i>
+                  <time datetime="2025-09-27">27 กันยายน 2568</time>
+                </div>
+                <h5>
+                  <a href="#"
+                    >ประกาศปิดทางเข้าอุทยานแห่งชาติน้ำตกพลิ้ว ช่วงฤดูฝน</a
+                  >
+                </h5>
+              </article>
+
+              <article class="news-item">
+                <div class="news-date">
+                  <i class="far fa-calendar-alt"></i>
+                  <time datetime="2025-09-26">26 กันยายน 2568</time>
+                </div>
+                <h5>
+                  <a href="#">จับตาช้างป่าอพยพจากป่าดงพญาเย็นในหน้าแล้ง</a>
+                </h5>
+              </article>
+
+              <article class="news-item">
+                <div class="news-date">
+                  <i class="far fa-calendar-alt"></i>
+                  <time datetime="2025-09-25">25 กันยายน 2568</time>
+                </div>
+                <h5>
+                  <a href="#">เปิดรับสมัครอาสาสมัครปลูกป่าชายเลนจังหวัดระนอง</a>
+                </h5>
+              </article>
+
+              <article class="news-item">
+                <div class="news-date">
+                  <i class="far fa-calendar-alt"></i>
+                  <time datetime="2025-09-24">24 กันยายน 2568</time>
+                </div>
+                <h5>
+                  <a href="#"
+                    >พบนกกระเรียนพันธุ์หายากในพื้นที่ชุ่มน้ำภาคอีสาน</a
+                  >
+                </h5>
+              </article>
+
+              <a href="#" class="btn-full">อ่านข่าวทั้งหมด</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== INFORMATION BANNER ========== -->
+      <section class="information-banner">
+        <div class="container">
+          <div class="banner-grid">
+            <!-- Information Section 1 -->
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="info-content">
+                <h3>สารสนเทศประชาชน</h3>
+                <p>ข้อมูลและบริการสำหรับประชาชนทั่วไป</p>
+                <a href="service.html" class="info-btn">
+                  <span>เข้าสู่ระบบ</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Information Section 2 -->
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-user-tie"></i>
+              </div>
+              <div class="info-content">
+                <h3>สารสนเทศบุคคลภายใน</h3>
+                <p>ระบบงานสำหรับเจ้าหน้าที่และบุคลากร</p>
+                <a href="service.html" class="info-btn">
+                  <span>เข้าสู่ระบบ</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Information Section 3 -->
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="info-content">
+                <h3>ระบบสนับสนุนตัดสินใจ</h3>
+                <p>เครื่องมือวิเคราะห์และรายงานผู้บริหาร</p>
+                <a href="service.html" class="info-btn">
+                  <span>เข้าสู่ระบบ</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== INFINITY CAROUSEL ========== -->
+      <section class="carousel-section">
+        <div class="container">
+          <div class="section-header">
+            <h3>หน่วยงานที่เกี่ยวข้อง</h3>
+            <!-- <p>ความงามของธรรมชาติไทยผ่านภาพถ่ายสุดงาม</p> -->
+          </div>
+
+          <div class="carousel-container">
+            <div class="carousel-track">
+              <!-- First set of images -->
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=1"
+                  alt="อุทยานแห่งชาติเขาใหญ่"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>อุทยานแห่งชาติเขาใหญ่</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=2"
+                  alt="น้ำตกเอราวัณ"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>น้ำตกเอราวัณ</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=3"
+                  alt="ดอยอินทนนท์"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>ดอยอินทนนท์</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=4"
+                  alt="หมู่เกาะสุรินทร์"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>หมู่เกาะสุรินทร์</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=5"
+                  alt="เขาสก"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>เขาสก</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=6"
+                  alt="ภูกระดึง"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>ภูกระดึง</h4>
+                </div>
+              </div>
+
+              <!-- Duplicate set for seamless loop -->
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=1"
+                  alt="อุทยานแห่งชาติเขาใหญ่"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>อุทยานแห่งชาติเขาใหญ่</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=2"
+                  alt="น้ำตกเอราวัณ"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>น้ำตกเอราวัณ</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=3"
+                  alt="ดอยอินทนนท์"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>ดอยอินทนนท์</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=4"
+                  alt="หมู่เกาะสุรินทร์"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>หมู่เกาะสุรินทร์</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=5"
+                  alt="เขาสก"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>เขาสก</h4>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="https://picsum.photos/300/200?random=6"
+                  alt="ภูกระดึง"
+                  loading="lazy" />
+                <div class="image-overlay">
+                  <h4>ภูกระดึง</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== UPCOMING EVENTS CALENDAR ========== -->
+      <section class="events-section">
+        <div class="container">
+          <div class="section-header">
+            <h3>ปฏิทินกิจกรรม</h3>
+            <p>กิจกรรมและงานที่กำลังจะมาถึง</p>
+          </div>
+
+          <div class="events-container">
+            <!-- Today's Event -->
+            <div class="event-item today-event">
+              <div class="event-date">
+                <div class="date-day">30</div>
+                <div class="date-month">ก.ย.</div>
+              </div>
+              <div class="event-content">
+                <div class="event-time">09:00 - 16:00</div>
+                <h4>ค่ายอนุรักษ์ป่าไผ่สำหรับเยาวชน</h4>
+                <p>อุทยานแห่งชาติเขาใหญ่ | กิจกรรมปลูกป่าและศึกษาธรรมชาติ</p>
+              </div>
+              <div class="event-status today-badge">
+                <i class="fas fa-clock"></i>
+                วันนี้
+              </div>
+            </div>
+
+            <!-- Tomorrow's Event -->
+            <div class="event-item">
+              <div class="event-date">
+                <div class="date-day">01</div>
+                <div class="date-month">ต.ค.</div>
+              </div>
+              <div class="event-content">
+                <div class="event-time">08:30 - 15:30</div>
+                <h4>โครงการสำรวจนกอพยพฤดูหนาว</h4>
+                <p>อุทยานแห่งชาติดอยอินทนนท์ | ร่วมสำรวจและนับจำนวนนกอพยพ</p>
+              </div>
+              <div class="event-status">
+                <i class="fas fa-calendar-alt"></i>
+                พรุ่งนี้
+              </div>
+            </div>
+
+            <!-- Upcoming Event 1 -->
+            <div class="event-item">
+              <div class="event-date">
+                <div class="date-day">05</div>
+                <div class="date-month">ต.ค.</div>
+              </div>
+              <div class="event-content">
+                <div class="event-time">10:00 - 14:00</div>
+                <h4>มหกรรมการอนุรักษ์สัตว์ป่าไทย</h4>
+                <p>อุทยานแห่งชาติเอราวัณ | นิทรรศการและกิจกรรมเรียนรู้</p>
+              </div>
+              <div class="event-status">
+                <i class="fas fa-calendar"></i>
+                5 ต.ค.
+              </div>
+            </div>
+
+            <!-- Upcoming Event 2 -->
+            <div class="event-item">
+              <div class="event-date">
+                <div class="date-day">12</div>
+                <div class="date-month">ต.ค.</div>
+              </div>
+              <div class="event-content">
+                <div class="event-time">07:00 - 17:00</div>
+                <h4>วันทำความสะอาดป่าชายเลนแห่งชาติ</h4>
+                <p>
+                  อุทยานแห่งชาติหาดนพรัตน์ธารา | กิจกรรมอาสาสมัครทำความสะอาด
+                </p>
+              </div>
+              <div class="event-status">
+                <i class="fas fa-calendar"></i>
+                12 ต.ค.
+              </div>
+            </div>
+
+            <!-- View All Events Button -->
+            <div class="view-all-events">
+              <a href="#" class="btn-view-all">
+                <i class="fas fa-calendar-week"></i>
+                ดูปฏิทินกิจกรรมทั้งหมด
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Column 1: Contact Info -->
+          <div class="footer-column">
+            <div class="footer-logo-placeholder">
+              <i class="fas fa-tree"></i>
+            </div>
+            <h4>กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช</h4>
+            <address>
+              <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <span
+                  >61 ถนนพหลโยธิน แขวงลาดยาว<br />เขตจตุจักร กรุงเทพฯ
+                  10900</span
+                >
+              </p>
+              <p>
+                <i class="fas fa-phone-alt"></i>
+                <a href="tel:025614292">0-2561-4292-3</a>
+              </p>
+              <p>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:info@dnp.go.th">info@dnp.go.th</a>
+              </p>
+            </address>
+          </div>
+
+          <!-- Column 2: Sitemap -->
+          <div class="footer-column">
+            <h4>ลิงก์นำทาง</h4>
+            <nav aria-label="Footer navigation">
+              <ul>
+                <li><a href="#">เกี่ยวกับหน่วยงาน</a></li>
+                <li><a href="#">ภารกิจและโครงสร้าง</a></li>
+                <li><a href="#">หน่วยงานภายใน</a></li>
+                <li><a href="#">คู่มือประชาชน</a></li>
+                <li><a href="#">แผนพัฒนาและรายงาน</a></li>
+                <li><a href="#">ติดต่อเรา</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Column 3: Web Links -->
+          <div class="footer-column">
+            <h4>เว็บไซต์ที่น่าสนใจ</h4>
+            <ul>
+              <li><a href="#">กระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม</a></li>
+              <li><a href="#">กรมป่าไม้</a></li>
+              <li><a href="#">กรมทรัพยากรทางทะเลและชายฝั่ง</a></li>
+              <li><a href="#">องค์การสวนสัตว์แห่งประเทศไทย</a></li>
+              <li><a href="#">ศูนย์ข้อมูลข่าวสารอิเล็กทรอนิกส์</a></li>
+              <li><a href="#">ระบบจองเข้าอุทยานออนไลน์</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Social Media -->
+          <div class="footer-column">
+            <h4>ติดตามเรา</h4>
+            <div class="social-icons">
+              <a href="#" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a href="#" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" aria-label="Line">
+                <i class="fab fa-line"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <p>© 2025 กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช สงวนลิขสิทธิ์</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========== FLOATING COMMENT BUTTON ========== -->
+    <div class="floating-btn" id="commentBtn">
+      <i class="fas fa-comment-alt"></i>
+      <span class="btn-tooltip">แสดงความคิดเห็น</span>
+    </div>
+
+    <!-- ========== COMMENT MODAL ========== -->
+    <div class="modal-overlay" id="commentModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>แสดงความคิดเห็นเกี่ยวกับเว็บไซต์</h3>
+          <button class="modal-close" id="closeModal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <form class="comment-form" id="commentForm">
+          <div class="form-group">
+            <label for="commentTitle">หัวข้อความคิดเห็น</label>
+            <input
+              type="text"
+              id="commentTitle"
+              name="title"
+              placeholder="กรุณาระบุหัวข้อความคิดเห็น"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label for="commentText">ความคิดเห็น</label>
+            <textarea
+              id="commentText"
+              name="comment"
+              rows="5"
+              placeholder="กรุณาแสดงความคิดเห็นของคุณ..."
+              required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>ระดับความพึงพอใจ</label>
+            <div class="satisfaction-rating">
+              <input
+                type="radio"
+                id="rating5"
+                name="satisfaction"
+                value="5"
+                required />
+              <label for="rating5" title="ดีมาก">
+                <i class="fas fa-star"></i>
+                <span>ดีมาก</span>
+              </label>
+
+              <input type="radio" id="rating4" name="satisfaction" value="4" />
+              <label for="rating4" title="ดี">
+                <i class="fas fa-star"></i>
+                <span>ดี</span>
+              </label>
+
+              <input type="radio" id="rating3" name="satisfaction" value="3" />
+              <label for="rating3" title="ปานกลาง">
+                <i class="fas fa-star"></i>
+                <span>ปานกลาง</span>
+              </label>
+
+              <input type="radio" id="rating2" name="satisfaction" value="2" />
+              <label for="rating2" title="ไม่ดี">
+                <i class="fas fa-star"></i>
+                <span>ไม่ดี</span>
+              </label>
+
+              <input type="radio" id="rating1" name="satisfaction" value="1" />
+              <label for="rating1" title="แย่มาก">
+                <i class="fas fa-star"></i>
+                <span>แย่มาก</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" id="cancelBtn">
+              ยกเลิก
+            </button>
+            <button type="submit" class="btn-submit">ส่งความคิดเห็น</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

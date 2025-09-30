@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>สร้างข่าวใหม่ - กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        min-height: 100vh;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      .header p {
+        opacity: 0.9;
+        font-size: 1rem;
+      }
+
+      .form-container {
+        padding: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .form-group label .required {
+        color: #dc2626;
+        margin-left: 0.25rem;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #fafafa;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #16a34a;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+      }
+
+      textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+        font-family: inherit;
+      }
+
+      .file-upload {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+
+      .file-input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .file-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        border: 2px dashed #cbd5e1;
+        border-radius: 8px;
+        background: #f8fafc;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .file-label:hover {
+        border-color: #16a34a;
+        background: #f0fdf4;
+      }
+
+      .file-label i {
+        font-size: 2rem;
+        color: #64748b;
+      }
+
+      .file-label:hover i {
+        color: #16a34a;
+      }
+
+      .file-info {
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+
+      .file-preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .preview-item {
+        position: relative;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f9fafb;
+      }
+
+      .preview-image {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+      }
+
+      .preview-name {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        text-align: center;
+        word-break: break-word;
+      }
+
+      .remove-file {
+        position: absolute;
+        top: 0.25rem;
+        right: 0.25rem;
+        background: #dc2626;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 0.75rem;
+      }
+
+      .tag-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        background: #dcfce7;
+        color: #166534;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        border: 1px solid #bbf7d0;
+      }
+
+      .tag .remove-tag {
+        background: none;
+        border: none;
+        color: #166534;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 0.25rem;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(22, 163, 74, 0.3);
+      }
+
+      .btn-secondary {
+        background: #f3f4f6;
+        color: #374151;
+      }
+
+      .btn-secondary:hover {
+        background: #e5e7eb;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .char-counter {
+        font-size: 0.75rem;
+        color: #64748b;
+        text-align: right;
+        margin-top: 0.25rem;
+      }
+
+      /* ========== HEADER STYLES ========== */
+      .page-header {
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        margin-bottom: 2rem;
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .logo-placeholder {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.25rem;
+      }
+
+      .logo-text h1 {
+        font-size: 0.875rem;
+        font-weight: bold;
+        color: #166534;
+        margin: 0;
+      }
+
+      .logo-text p {
+        font-size: 0.75rem;
+        color: #666;
+        margin: 0;
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #16a34a;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .back-btn:hover {
+        color: #15803d;
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          margin: 0;
+          border-radius: 0;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .form-container {
+          padding: 1rem;
+        }
+
+        .row {
+          grid-template-columns: 1fr;
+        }
+
+        .form-actions {
+          flex-direction: column;
+        }
+
+        .file-preview {
+          grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        }
+
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .logo-section {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER ========== -->
+    <header class="page-header">
+      <div class="header-content">
+        <!-- Logo Section -->
+        <div class="logo-section">
+          <div class="logo-placeholder">
+            <i class="fas fa-tree"></i>
+          </div>
+          <div class="logo-text">
+            <h1>กรมอุทยานแห่งชาติ</h1>
+            <p>สัตว์ป่า และพันธุ์พืช</p>
+          </div>
+        </div>
+
+        <!-- Back Button -->
+        <a href="service.html" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+          กลับหน้าหลัก
+        </a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="header">
+        <h1>
+          <i class="fas fa-newspaper"></i>
+          สร้างข่าวใหม่
+        </h1>
+        <p>เพิ่มข่าวสารและกิจกรรมของกรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช</p>
+      </div>
+
+      <div class="form-container">
+        <form id="newsForm" enctype="multipart/form-data">
+          <!-- Title Section -->
+          <div class="form-group">
+            <label for="title"
+              >หัวข้อข่าว <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="title"
+              name="title"
+              class="form-control"
+              placeholder="ระบุหัวข้อข่าวที่น่าสนใจ..."
+              required
+              maxlength="100" />
+            <div class="char-counter">0/100 ตัวอักษร</div>
+          </div>
+
+          <!-- Subtitle -->
+          <div class="form-group">
+            <label for="subtitle">หัวข้อรอง</label>
+            <input
+              type="text"
+              id="subtitle"
+              name="subtitle"
+              class="form-control"
+              placeholder="หัวข้อรองเพิ่มเติม (ไม่บังคับ)"
+              maxlength="150" />
+            <div class="char-counter">0/150 ตัวอักษร</div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="description"
+              >เนื้อหาข่าว <span class="required">*</span></label
+            >
+            <textarea
+              id="description"
+              name="description"
+              class="form-control"
+              placeholder="เขียนเนื้อหาข่าวอย่างละเอียด..."
+              required
+              maxlength="2000"></textarea>
+            <div class="char-counter">0/2000 ตัวอักษร</div>
+          </div>
+
+          <!-- Image Upload -->
+          <div class="form-group">
+            <label for="images"
+              >รูปภาพประกอบข่าว <span class="required">*</span></label
+            >
+            <div class="file-upload">
+              <input
+                type="file"
+                id="images"
+                name="images[]"
+                class="file-input"
+                multiple
+                accept="image/*"
+                required />
+              <label for="images" class="file-label">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <div>
+                  <strong>คลิกเพื่อเลือกรูปภาพ</strong><br />
+                  <span class="file-info">หรือลากไฟล์มาวางที่นี่</span>
+                </div>
+                <div class="file-info">
+                  รองรับไฟล์ JPG, PNG, GIF ขนาดไม่เกิน 5MB
+                </div>
+              </label>
+            </div>
+            <div id="imagePreview" class="file-preview"></div>
+          </div>
+
+          <!-- Additional Files -->
+          <div class="form-group">
+            <label for="attachments">ไฟล์เอกสารเพิ่มเติม</label>
+            <div class="file-upload">
+              <input
+                type="file"
+                id="attachments"
+                name="attachments[]"
+                class="file-input"
+                multiple
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" />
+              <label for="attachments" class="file-label">
+                <i class="fas fa-paperclip"></i>
+                <div>
+                  <strong>เลือกไฟล์เอกสาร</strong><br />
+                  <span class="file-info">PDF, Word, Excel, PowerPoint</span>
+                </div>
+              </label>
+            </div>
+            <div id="attachmentPreview" class="file-preview"></div>
+          </div>
+
+          <!-- Category and Tags -->
+          <div class="row">
+            <div class="form-group">
+              <label for="category"
+                >หมวดหมู่ <span class="required">*</span></label
+              >
+              <select
+                id="category"
+                name="category"
+                class="form-control"
+                required>
+                <option value="">เลือกหมวดหมู่</option>
+                <option value="conservation">การอนุรักษ์</option>
+                <option value="announcement">ประกาศ</option>
+                <option value="activity">กิจกรรม</option>
+                <option value="event">งานสัมมนา</option>
+                <option value="research">งานวิจัย</option>
+                <option value="education">การศึกษา</option>
+                <option value="emergency">ข่าวเร่งด่วน</option>
+                <option value="award">รางวัล</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="priority">ระดับความสำคัญ</label>
+              <select id="priority" name="priority" class="form-control">
+                <option value="normal">ปกติ</option>
+                <option value="high">สำคัญ</option>
+                <option value="urgent">เร่งด่วน</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="form-group">
+            <label for="tagInput">แท็ก</label>
+            <input
+              type="text"
+              id="tagInput"
+              class="form-control"
+              placeholder="พิมพ์แท็กแล้วกด Enter (เช่น ธรรมชาติ, สัตว์ป่า, อุทยาน)" />
+            <div id="tagContainer" class="tag-container"></div>
+            <input type="hidden" id="tags" name="tags" />
+          </div>
+
+          <!-- Date and Location -->
+          <div class="row">
+            <div class="form-group">
+              <label for="eventDate">วันที่เหตุการณ์</label>
+              <input
+                type="date"
+                id="eventDate"
+                name="eventDate"
+                class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label for="location">สถานที่</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                class="form-control"
+                placeholder="ชื่ออุทยาน/สถานที่" />
+            </div>
+          </div>
+
+          <!-- Author and Contact -->
+          <div class="row">
+            <div class="form-group">
+              <label for="author"
+                >ผู้เขียน <span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="author"
+                name="author"
+                class="form-control"
+                placeholder="ชื่อผู้เขียนข่าว"
+                required />
+            </div>
+
+            <div class="form-group">
+              <label for="contact">ช่องทางติดต่อ</label>
+              <input
+                type="text"
+                id="contact"
+                name="contact"
+                class="form-control"
+                placeholder="เบอร์โทร, อีเมล" />
+            </div>
+          </div>
+
+          <!-- Publishing Options -->
+          <div class="row">
+            <div class="form-group">
+              <label for="publishDate">วันที่เผยแพร่</label>
+              <input
+                type="datetime-local"
+                id="publishDate"
+                name="publishDate"
+                class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label for="status">สถานะ</label>
+              <select id="status" name="status" class="form-control">
+                <option value="draft">แบบร่าง</option>
+                <option value="published">เผยแพร่</option>
+                <option value="scheduled">กำหนดการ</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary">
+              <i class="fas fa-times"></i>
+              ยกเลิก
+            </button>
+            <button type="button" class="btn btn-secondary">
+              <i class="fas fa-save"></i>
+              บันทึกแบบร่าง
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i>
+              เผยแพร่ข่าว
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // ========== CHARACTER COUNTERS ========== //
+      function setupCharCounter(inputId, maxLength) {
+        const input = document.getElementById(inputId);
+        const counter = input.nextElementSibling;
+
+        if (counter && counter.classList.contains("char-counter")) {
+          input.addEventListener("input", () => {
+            const length = input.value.length;
+            counter.textContent = `${length}/${maxLength} ตัวอักษร`;
+
+            if (length > maxLength * 0.9) {
+              counter.style.color = "#dc2626";
+            } else if (length > maxLength * 0.7) {
+              counter.style.color = "#f59e0b";
+            } else {
+              counter.style.color = "#64748b";
+            }
+          });
+        }
+      }
+
+      setupCharCounter("title", 100);
+      setupCharCounter("subtitle", 150);
+      setupCharCounter("description", 2000);
+
+      // ========== FILE UPLOAD PREVIEW ========== //
+      function handleFilePreview(inputId, previewId, isImage = false) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+
+        input.addEventListener("change", (e) => {
+          preview.innerHTML = "";
+          const files = Array.from(e.target.files);
+
+          files.forEach((file, index) => {
+            const item = document.createElement("div");
+            item.className = "preview-item";
+
+            if (isImage && file.type.startsWith("image/")) {
+              const img = document.createElement("img");
+              img.className = "preview-image";
+              img.src = URL.createObjectURL(file);
+              item.appendChild(img);
+            } else {
+              const icon = document.createElement("div");
+              icon.style.cssText =
+                "height: 100px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #64748b;";
+              icon.innerHTML = '<i class="fas fa-file"></i>';
+              item.appendChild(icon);
+            }
+
+            const name = document.createElement("div");
+            name.className = "preview-name";
+            name.textContent = file.name;
+            item.appendChild(name);
+
+            const removeBtn = document.createElement("button");
+            removeBtn.className = "remove-file";
+            removeBtn.innerHTML = "×";
+            removeBtn.onclick = () => {
+              item.remove();
+              // Remove file from input
+              const dt = new DataTransfer();
+              files.forEach((f, i) => {
+                if (i !== index) dt.items.add(f);
+              });
+              input.files = dt.files;
+            };
+            item.appendChild(removeBtn);
+
+            preview.appendChild(item);
+          });
+        });
+      }
+
+      handleFilePreview("images", "imagePreview", true);
+      handleFilePreview("attachments", "attachmentPreview", false);
+
+      // ========== TAG SYSTEM ========== //
+      const tagInput = document.getElementById("tagInput");
+      const tagContainer = document.getElementById("tagContainer");
+      const tagsHidden = document.getElementById("tags");
+      let tags = [];
+
+      function addTag(tagText) {
+        if (tagText && !tags.includes(tagText)) {
+          tags.push(tagText);
+          updateTagDisplay();
+          updateTagsInput();
+        }
+      }
+
+      function removeTag(tagText) {
+        tags = tags.filter((tag) => tag !== tagText);
+        updateTagDisplay();
+        updateTagsInput();
+      }
+
+      function updateTagDisplay() {
+        tagContainer.innerHTML = "";
+        tags.forEach((tag) => {
+          const tagElement = document.createElement("span");
+          tagElement.className = "tag";
+          tagElement.innerHTML = `
+                    ${tag}
+                    <button type="button" class="remove-tag" onclick="removeTag('${tag}')">×</button>
+                `;
+          tagContainer.appendChild(tagElement);
+        });
+      }
+
+      function updateTagsInput() {
+        tagsHidden.value = tags.join(",");
+      }
+
+      tagInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const tagText = tagInput.value.trim();
+          if (tagText) {
+            addTag(tagText);
+            tagInput.value = "";
+          }
+        }
+      });
+
+      // ========== FORM VALIDATION AND SUBMISSION ========== //
+      document.getElementById("newsForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Basic validation
+        const requiredFields = ["title", "description", "category", "author"];
+        let isValid = true;
+
+        requiredFields.forEach((fieldId) => {
+          const field = document.getElementById(fieldId);
+          if (!field.value.trim()) {
+            field.style.borderColor = "#dc2626";
+            isValid = false;
+          } else {
+            field.style.borderColor = "#e5e7eb";
+          }
+        });
+
+        // Check if at least one image is uploaded
+        const images = document.getElementById("images").files;
+        if (images.length === 0) {
+          alert("กรุณาเลือกรูปภาพประกอบข่าวอย่างน้อย 1 รูป");
+          isValid = false;
+        }
+
+        if (isValid) {
+          // Here you would typically send the form data to your server
+          alert("ข่าวถูกส่งเรียบร้อยแล้ว! (นี่เป็นเพียงตัวอย่าง)");
+          console.log("Form data:", new FormData(e.target));
+        } else {
+          alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+        }
+      });
+
+      // ========== DRAG AND DROP ========== //
+      ["images", "attachments"].forEach((inputId) => {
+        const input = document.getElementById(inputId);
+        const label = input.nextElementSibling;
+
+        ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+          label.addEventListener(eventName, preventDefaults);
+        });
+
+        ["dragenter", "dragover"].forEach((eventName) => {
+          label.addEventListener(eventName, () => {
+            label.style.borderColor = "#16a34a";
+            label.style.background = "#f0fdf4";
+          });
+        });
+
+        ["dragleave", "drop"].forEach((eventName) => {
+          label.addEventListener(eventName, () => {
+            label.style.borderColor = "#cbd5e1";
+            label.style.background = "#f8fafc";
+          });
+        });
+
+        label.addEventListener("drop", (e) => {
+          const files = e.dataTransfer.files;
+          input.files = files;
+          input.dispatchEvent(new Event("change"));
+        });
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      // ========== AUTO-SAVE DRAFT ========== //
+      let autoSaveInterval;
+      const formInputs = document.querySelectorAll("input, textarea, select");
+
+      formInputs.forEach((input) => {
+        input.addEventListener("input", () => {
+          clearTimeout(autoSaveInterval);
+          autoSaveInterval = setTimeout(() => {
+            console.log("Auto-saving draft...");
+            // Here you would save the form data as draft
+          }, 2000);
+        });
+      });
+
+      // ========== SET DEFAULT VALUES ========== //
+      document.addEventListener("DOMContentLoaded", () => {
+        // Set current date for publish date
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById("publishDate").value = now
+          .toISOString()
+          .slice(0, 16);
+
+        // Set today as event date
+        document.getElementById("eventDate").value = now
+          .toISOString()
+          .slice(0, 10);
+      });
+    </script>
+  </body>
+</html>
